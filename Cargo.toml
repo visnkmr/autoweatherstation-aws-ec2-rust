@@ -1,0 +1,9 @@
+[package]
+name = "hbin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aws-config = { version= "1.5.8", features = ["behavior-version-latest"] }
+aws-sdk-s3 = "1.50.0"
+tokio = { version = "1", features = ["full"] }
