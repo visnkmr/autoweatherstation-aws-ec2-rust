@@ -1,0 +1,37 @@
+name: Run Program and update AWS data
+on:
+  schedule:
+    - cron: "5 */6 * * *"
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Code
+      run: cargo run
+      working-directory: ./awsdatasave
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPCENTER_KEY: ${{ secrets.APPCENTER_KEY }}
+          APPCENTER_UNAME: ${{ secrets.APPCENTER_UNAME }}
+          APPCENTER_APPNAME: ${{ secrets.APPCENTER_APPNAME }}
+          DATAW: ${{ secrets.DATAW }}
+          CODEBERG: ${{ secrets.CODEBERG }}
+          CODEBERG_URL: ${{ secrets.CODEBERG_URL }}
+      
+    - name: Commit files
+      run: |
+        git config --global user.email "12533753+visnkmr@users.noreply.github.com"
+        git config --global user.name "fromghrunner"
+        git config --global init.defaultBranch main 
+        git add .
+        git commit -m "Latest awsdata added."
+        git push https://git:${{ secrets.TOKEN }}@github.com/visnkmr/aws main
