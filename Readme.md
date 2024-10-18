@@ -1,0 +1,1 @@
+Auto weather stations(AWS) API over jsdelivr CDN. use awsdata/aws_{ddmmyyyy}_hh.txt to get the data.The file is parsed as seen on the original website(70kB), this is because making it a json makes the data size 220kB and making it a protobuf makes it 88kB with the added compute for the client for retrieving the data.

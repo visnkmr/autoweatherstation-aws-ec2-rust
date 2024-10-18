@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// Not necessary for Python but should still be declared to avoid name collisions 
+// in the Protocol Buffers namespace and non-Python languages
+package awsdata;
+
+message DataContent {
+    string latitude = 1;
+    string longitude = 2;
+    string aws = 3;
+    string state = 4;
+    string region = 5;
+    string location = 6;
+    string temperature = 7;
+    string date = 8;
+    string time = 9;
+}
